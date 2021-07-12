@@ -15,6 +15,7 @@
 
 .activeMenu {
   display: flex;
+  flex-direction: column;
 }
 
 .hamburgerImage {
