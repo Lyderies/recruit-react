@@ -1,0 +1,24 @@
+/* Menu Styling */
+
+.menu {
+  width: max-content;
+  height: max-content;
+}
+
+.hamburgerBar {
+  display: flex;
+  min-width: 100vw;
+  height: 5rem;
+
+  background-color: orange; /* Testing Only */
+}
+
+.activeMenu {
+  display: flex;
+}
+
+.hamburgerImage {
+  display: flex;
+  height: 5rem;
+  width: 5rem;
+}

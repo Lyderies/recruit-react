@@ -1,4 +1,5 @@
 import React from "react";
+import "../styling/MenuButton.css";
 
 export type ButtonProps = {
   title: string;
@@ -7,7 +8,7 @@ export type ButtonProps = {
 const MenuButton: React.FC<ButtonProps> = (props) => {
   const { title } = props;
 
-  return <button className="MenuButton">{title}</button>;
+  return <section className="menuButton">{title}</section>;
 };
 
 export default MenuButton;
