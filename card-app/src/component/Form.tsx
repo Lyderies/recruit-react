@@ -82,7 +82,7 @@ const Form = () => {
         </section>
 
         <section className="formInput">
-          <label>CVC</label>
+          <label className="formLabel">CVC</label>
           <Controller
             control={control}
             name="cvc"
@@ -99,7 +99,7 @@ const Form = () => {
         </section>
 
         <section className="formInput">
-          <label>Expiry Date</label>
+          <label className="formLabel">Expiry Date</label>
           <Controller
             control={control}
             name="expiry"
