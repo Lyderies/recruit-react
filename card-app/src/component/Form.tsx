@@ -70,6 +70,7 @@ const Form = () => {
             }}
             render={({ field: { onChange, value } }) => (
               <NumberFormat
+                className="inputBox"
                 onChange={onChange}
                 value={value}
                 format="#### #### #### ####"
@@ -80,47 +81,56 @@ const Form = () => {
             <div className="formError">This is required</div>
           )}
         </section>
-
-        <section className="formInput">
-          <label className="formLabel">CVC</label>
-          <Controller
-            control={control}
-            name="cvc"
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <NumberFormat onChange={onChange} value={value} format="###" />
+        <div className="largeWrapper">
+          <section className="formInput formInputLarge">
+            <label className="formLabel">CVC</label>
+            <Controller
+              control={control}
+              name="cvc"
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <NumberFormat
+                  className="inputBox"
+                  onChange={onChange}
+                  value={value}
+                  format="###"
+                />
+              )}
+            />
+            {errors.cvc && errors.cvc.type === "required" && (
+              <div className="formError">This is required</div>
             )}
-          />
-          {errors.cvc && errors.cvc.type === "required" && (
-            <div className="formError">This is required</div>
-          )}
-        </section>
+          </section>
 
-        <section className="formInput">
-          <label className="formLabel">Expiry Date</label>
-          <Controller
-            control={control}
-            name="expiry"
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <NumberFormat
-                onChange={onChange}
-                value={value}
-                format={cardExpiry}
-                placeholder="MM/YY"
-                mask={["M", "M", "Y", "Y"]}
-              />
+          <section className="formInput formInputLarge">
+            <label className="formLabel">Expiry Date</label>
+            <Controller
+              control={control}
+              name="expiry"
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <NumberFormat
+                  className="inputBox"
+                  onChange={onChange}
+                  value={value}
+                  format={cardExpiry}
+                  placeholder="MM/YY"
+                  mask={["M", "M", "Y", "Y"]}
+                />
+              )}
+            />
+            {errors.expiry && errors.expiry.type === "required" && (
+              <div className="formError">This is required</div>
             )}
-          />
-          {errors.expiry && errors.expiry.type === "required" && (
-            <div className="formError">This is required</div>
-          )}
+          </section>
+        </div>
+        <section className="formSubmitWrapper">
+          <input className="formSubmit" type="submit" value="Submit" />
         </section>
-        <input className="formSubmit" type="submit" value="Submit" />
       </form>
     </div>
   );

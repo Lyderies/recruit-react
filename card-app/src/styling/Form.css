@@ -32,6 +32,12 @@
   padding: 2px;
 }
 
+.inputBox {
+  padding: 2px;
+  margin-left: 5px;
+  border-radius: 2px;
+}
+
 .inputSmall {
   width: 96%;
 }
@@ -43,4 +49,43 @@
 .formSubmit {
   width: 50vw;
   margin: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .formDiv {
+    flex-direction: column;
+    font-size: 2rem;
+  }
+
+  .largeWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 64px;
+  }
+
+  .formInput {
+    width: 95%;
+  }
+
+  .formInputLarge {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+  }
+
+  .formSubmitWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .formSubmit {
+    width: 80vw;
+    margin: 5px;
+    font-size: 2rem;
+  }
 }
