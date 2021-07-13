@@ -1,21 +1,31 @@
 /* Menu Styling */
 
 .menu {
-  width: max-content;
-  height: max-content;
+  position: absolute;
+  top: 0;
+  background-color: floralwhite;
 }
 
 .hamburgerBar {
   display: flex;
-  min-width: 100vw;
+  width: 100vw;
   height: 5rem;
+}
 
-  background-color: orange; /* Testing Only */
+.menuTitle {
+  display: flex;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem;
 }
 
 .activeMenu {
   display: flex;
+  height: 86vh;
   flex-direction: column;
+  place-items: center;
 }
 
 .hamburgerImage {

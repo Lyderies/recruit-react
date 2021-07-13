@@ -57,7 +57,9 @@ const Menu = () => {
     <div className="menu">
       <div className="hamburgerBar" onClick={changeMenu}>
         {menuIcon}
+        <div className="menuTitle">Register Card Form</div>
       </div>
+
       <SetMenu />
     </div>
   );

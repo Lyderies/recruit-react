@@ -2,15 +2,23 @@
 
 .menuButton {
   display: flex;
-  width: auto;
+  place-content: center;
+  justify-self: center;
+  align-items: center;
+  width: 45%;
+
   margin: 16px;
   padding: 16px;
   height: 16px;
 
-  border-style: solid;
+  border-bottom: solid;
   border-color: black;
   border-width: 2px;
-  border-radius: 5px;
 
-  background-color: red; /* Testing Only */
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.menuButton:hover {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
