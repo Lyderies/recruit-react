@@ -4,6 +4,7 @@ import NumberFormat from "react-number-format";
 // Styling
 import "../styling/Form.css";
 
+// Types
 type Inputs = {
   cardNumber: number;
   cvc: number;
@@ -12,81 +13,105 @@ type Inputs = {
 
 const Form = () => {
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<Inputs>({
-    defaultValues: {
-      cardNumber: 1234567891234567,
-      cvc: 123,
-      expiry: 0o12021,
-    },
-    mode: "onChange",
-  });
+  } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
+  const limit = (val: string, max: string) => {
+    if (val.length === 1 && val[0] > max[0]) {
+      val = "0" + val;
+    }
+
+    if (val.length === 2) {
+      if (Number(val) === 0) {
+        val = "01";
+
+        //this can happen when the user pastes a number
+      } else if (val > max) {
+        val = max;
+      }
+    }
+
+    return val;
+  };
+
+  const cardExpiry = (val: string) => {
+    let month = limit(val.substring(0, 2), "12");
+    let year = val.substring(2, 4);
+
+    return month + (year.length ? "/" + year : "");
+  };
+
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <section>
-        <input
-          className="formInput cardName"
-          aria-invalid={errors.cardNumber ? "true" : "false"}
-          {...register("cardNumber", {
-            required: true,
-            minLength: 16,
-            maxLength: 16,
-          })}
-        />
-        {errors.cardNumber && (
-          <span className="formError">This field is required</span>
-        )}
-        {errors.cardNumber &&
-          errors.cardNumber.type === "minLength" &&
-          "maxLength" && (
-            <span className="formError">
-              Please put in a correct card number
-            </span>
-          )}
-      </section> */}
-      <section>
+      <section className="formInput">
         <label>Credit Card Details</label>
         <Controller
           control={control}
           name="cardNumber"
-          render={({ field: { value } }) => (
-            <NumberFormat value={value} format="#### #### #### ####" />
+          rules={{
+            required: true,
+            min: 16,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <NumberFormat
+              onChange={onChange}
+              value={value}
+              format="#### #### #### ####"
+            />
           )}
         />
+        {errors.cardNumber && errors.cardNumber.type === "min" && (
+          <div className="formError">Please put in a correct card number</div>
+        )}
+        {errors.cardNumber && errors.cardNumber.type === "required" && (
+          <div className="formError">This is required</div>
+        )}
       </section>
-      <section>
-        <input
-          className="formInput cvc"
-          aria-invalid={errors.cvc ? "true" : "false"}
-          {...register("cvc", { required: true, minLength: 3, maxLength: 3 })}
+
+      <section className="formInput">
+        <label>CVC</label>
+        <Controller
+          control={control}
+          name="cvc"
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <NumberFormat onChange={onChange} value={value} format="###" />
+          )}
         />
-
-        {errors.cvc && (
-          <span className="formError">This field is required</span>
-        )}
-        {errors.cvc && errors.cvc.type === "minLength" && "maxLength" && (
-          <span className="formError">Please put in the correct cvc</span>
+        {errors.cvc && errors.cvc.type === "required" && (
+          <div className="formError">This is required</div>
         )}
       </section>
 
-      <section>
-        <input
-          className="formInput expiry"
-          {...register("expiry", { required: true })}
+      <section className="formInput">
+        <label>Expiry Date</label>
+        <Controller
+          control={control}
+          name="expiry"
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <NumberFormat
+              onChange={onChange}
+              value={value}
+              format={cardExpiry}
+              placeholder="MM/YY"
+              mask={["M", "M", "Y", "Y"]}
+            />
+          )}
         />
-
-        {errors.expiry && (
-          <span className="formError">This field is required</span>
+        {errors.expiry && errors.expiry.type === "required" && (
+          <div className="formError">This is required</div>
         )}
-
-        <input type="submit" />
       </section>
+      <input type="submit" value="Submit" />
     </form>
   );
 };
