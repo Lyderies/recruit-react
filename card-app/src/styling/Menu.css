@@ -33,3 +33,27 @@
   height: 4.5rem;
   width: 4.5rem;
 }
+
+@media screen and (max-width: 720px) {
+  .activeMenu {
+    height: 92vh;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hamburgerBar {
+    height: 10rem;
+  }
+
+  .menuTitle {
+    font-size: 3rem;
+    padding: 5rem;
+  }
+
+  .hamburgerImage {
+    display: flex;
+    padding: 2px;
+    height: 9rem;
+    width: 9rem;
+  }
+}

@@ -61,7 +61,7 @@ const Form = () => {
       </div>
       <form className="formDiv" onSubmit={handleSubmit(onSubmit)}>
         <section className="formInput">
-          <label className="formLabel">Credit Card Details</label>
+          <label className="formLabel">Credit Card Number</label>
           <Controller
             control={control}
             name="cardNumber"
