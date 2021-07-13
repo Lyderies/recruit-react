@@ -12,7 +12,7 @@ import hamburgerOpen from "../media/icons/hamburger_open.svg";
 
 const Menu = () => {
   // states
-  const [menuCross, setMenuCross] = useState(false);
+  const [menuCross, setMenuCross] = useState(true);
   const [hidden, setHidden] = useState(true);
 
   const handleHiddenChange = (menuCross: boolean) => {
